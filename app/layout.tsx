@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Mono } from "next/font/google";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -19,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Carbon Tech Africa",
+  title: "Terra Carbon Consults",
   description: "A platform to connect carbon offset projects in Africa with global buyers, fostering transparency and sustainability in the carbon market.",
 };
 
@@ -34,6 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );
