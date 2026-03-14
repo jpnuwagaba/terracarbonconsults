@@ -228,7 +228,7 @@ const Navbar = () => {
                       <button
                         type="button"
                         onClick={() =>
-                          setMobileExpandedSection((prev) => (prev === item.key ? null : item.key))
+                          setMobileExpandedSection((prev) => (prev === item.key ? null : item.key as DropdownKey | null))
                         }
                         className="flex w-full items-center justify-between gap-4 text-left text-sm font-semibold text-primary"
                       >
