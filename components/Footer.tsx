@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { Linkedin, Mail, Twitter, Youtube } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -187,4 +187,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
