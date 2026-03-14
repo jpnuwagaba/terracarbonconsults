@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import { Linkedin, Mail, Twitter, Youtube } from 'lucide-react';
+import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -17,17 +19,17 @@ const socialLinks = [
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com',
-    icon: Linkedin,
+    icon: FaLinkedinIn,
   },
   {
     label: 'X / Twitter',
     href: 'https://x.com',
-    icon: Twitter,
+    icon: FaXTwitter,
   },
   {
     label: 'YouTube',
     href: 'https://www.youtube.com',
-    icon: Youtube,
+    icon: FaYoutube,
   },
   {
     label: 'Email',
