@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe2, LineChart, ShieldCheck, Wrench } from 'lucide-react';
+import { LineChart, ShieldCheck, Wrench } from 'lucide-react';
 import { GiAfrica } from "react-icons/gi";
 
 type Pillar = {
