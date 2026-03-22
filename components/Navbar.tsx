@@ -153,14 +153,20 @@ const Navbar = () => {
               </span>
             </div>
 
-            <div className="flex items-center justify-end gap-4">
+            <div className="flex items-center justify-end gap-2">
+              <button
+                  type="button"
+                  className={`rounded-full bg-primary ${isScrolled ? 'py-1.5' : 'py-2'} transition-[padding,opacity] duration-300 px-3 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4`}
+                >
+                 Email Us
+                </button>
               <button
                 type="button"
                 aria-label="Search"
                 className={`rounded-full bg-primary transition-[padding,opacity] duration-300 hover:opacity-90 ${isScrolled ? 'p-1.5' : 'p-2'}`}
               >
                 <Search
-                  className={`text-secondary transition-[width,height] duration-300 ${isScrolled ? 'size-4' : 'size-5'}`}
+                  className={`text-secondary transition-[width,height] duration-300 ${isScrolled ? 'size-4.5' : 'size-5'}`}
                 />
               </button>
             </div>

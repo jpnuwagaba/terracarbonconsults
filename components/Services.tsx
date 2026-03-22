@@ -55,7 +55,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   return (
     <Link
       href={service.href}
-      className="group relative flex flex-col min-h-[220px] items-start justify-between gap-6 border border-secondary/15 bg-chart-4/10 p-6 transition-all duration-300 hover:border-primary/50 hover:bg-chart-3/20 sm:p-8"
+      className="group relative flex min-h-[220px] flex-col items-start justify-between gap-6 border border-secondary/15 bg-chart-4/24 p-6 transition-all duration-300 hover:border-primary/50 hover:bg-chart-4/16 sm:p-8"
     >
       <div className="flex flex-row items-start justify-between">
         <h3 className="text-3xl font-semibold leading-tight text-secondary sm:text-4xl">{service.title}</h3>
@@ -63,14 +63,21 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
           <ArrowRight className="size-14 stroke-[1.35] sm:size-16" />
         </span>
       </div>
-      <div><p className="mt-4 text-base leading-7 text-secondary/85 sm:text-lg">{service.description}</p></div>
+      <div>
+        <p className="mt-4 text-base leading-7 text-secondary/85 sm:text-lg">{service.description}</p>
+      </div>
     </Link>
   );
 };
 
 const Services = () => {
   return (
-    <section className="relative overflow-hidden bg-chart-5 py-14 text-secondary sm:py-16 lg:py-20">
+    <section className="relative overflow-hidden py-14 text-secondary sm:py-16 lg:py-20">
+      <div aria-hidden className="absolute inset-0">
+        <div className="h-full w-full bg-[url('https://images.pexels.com/photos/243138/pexels-photo-243138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-chart-5/80" />
+      </div>
+
       <div className="pointer-events-none absolute -left-20 top-12 h-52 w-52 rounded-full bg-chart-3/20 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-chart-2/15 blur-3xl" />
 

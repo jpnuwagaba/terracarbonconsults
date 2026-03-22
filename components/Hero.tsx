@@ -16,12 +16,12 @@ const Hero = () => {
               project development, rigorous monitoring, and trusted market connections.
             </p>
 
-            <button
+            {/* <button
               type="button"
               className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-secondary shadow-lg shadow-primary/20 transition-opacity hover:opacity-90 sm:w-fit sm:py-4"
             >
               Explore Our Services
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -33,7 +33,7 @@ const Hero = () => {
 
             <div className="relative h-[240px] w-full max-w-[560px] sm:h-[300px] md:h-[360px] lg:h-[420px]">
               <Image
-                src="/assets/carbon-graphic.svg"
+                src="/assets/hero-alternative.png"
                 alt="Carbon project package artwork"
                 fill
                 priority

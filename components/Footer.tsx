@@ -33,14 +33,19 @@ const socialLinks = [
   },
   {
     label: 'Email',
-    href: 'mailto:hello@terracarbonconsults.com',
+    href: 'mailto:info@terracarbonconsults.com',
     icon: Mail,
   },
 ];
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden bg-linear-to-br from-chart-5 via-chart-5 to-chart-4 text-secondary">
+    <footer className="relative overflow-hidden text-secondary">
+      <div aria-hidden className="absolute inset-0">
+        <div className="h-full w-full bg-[url('/assets/footer-bg.jpg')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-linear-to-br from-chart-5/85 via-chart-5/75 to-chart-4/80" />
+      </div>
+
       <div className="pointer-events-none absolute -right-36 top-10 h-80 w-80 rounded-full bg-chart-4/45 blur-3xl" />
       <div className="pointer-events-none absolute right-14 top-52 h-72 w-72 rounded-full bg-chart-3/30 blur-3xl" />
       <div className="pointer-events-none absolute -left-24 bottom-24 h-72 w-72 rounded-full bg-chart-2/25 blur-3xl" />
@@ -80,10 +85,10 @@ const Footer = () => {
                 <div>
                   <p className="text-xs uppercase tracking-[0.16em] text-secondary/70">Email</p>
                   <Link
-                    href="mailto:hello@terracarbonconsults.com"
+                    href="mailto:info@terracarbonconsults.com"
                     className="mt-2 block text-base font-medium transition-colors hover:text-secondary"
                   >
-                    hello@terracarbonconsults.com
+                    info@terracarbonconsults.com
                   </Link>
                 </div>
 
