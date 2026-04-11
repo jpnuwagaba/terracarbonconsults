@@ -1,18 +1,19 @@
 import Link from 'next/link';
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, HandFist, ChartNoAxesGantt, DecimalsArrowRight, CircleDollarSign } from 'lucide-react';
 
 type ApproachStep = {
   id: number;
   title: string;
   description: string;
+  icon: React.ElementType;
 };
 
 const approachSteps: ApproachStep[] = [
-  { id: 1, title: 'Opportunity', description: 'Feasibility & assessment' },
-  { id: 2, title: 'Design', description: 'Certification & structuring' },
-  { id: 3, title: 'MRV', description: 'Monitoring & reporting' },
-  { id: 4, title: 'Market', description: 'Issuance & trading' },
+  { id: 1, title: 'Opportunity', description: 'Feasibility & assessment', icon: HandFist },
+  { id: 2, title: 'Design', description: 'Certification & structuring', icon: ChartNoAxesGantt },
+  { id: 3, title: 'MRV', description: 'Monitoring & reporting', icon: DecimalsArrowRight },
+  { id: 4, title: 'Market', description: 'Issuance & trading', icon: CircleDollarSign },
 ];
 
 type StepTileProps = {
@@ -20,21 +21,25 @@ type StepTileProps = {
 };
 
 const StepTile = ({ step }: StepTileProps) => {
+  const IconComponent = step.icon;
   return (
     <div className="relative pt-3 pr-3">
-      <div
+      {/* <div
         aria-hidden
         className="pointer-events-none absolute left-2 right-3 top-0 h-3 -skew-x-[36deg] border border-primary/20 bg-chart-1/40"
       />
       <div
         aria-hidden
         className="pointer-events-none absolute bottom-3 right-0 top-2 w-3 skew-y-[38deg] border border-primary/20 bg-chart-2/35"
-      />
+      /> */}
 
-      <article className="relative z-10 flex h-full min-h-[190px] flex-col justify-between rounded-xs border border-primary/25 bg-background/80 p-6 backdrop-blur-[2px] transition-all duration-300 hover:border-primary/45 hover:bg-background/72">
+      <article className="relative z-10 flex h-full min-h-[190px] flex-col justify-between rounded-xs border border-primary/50 bg-background/80 p-6 backdrop-blur-[2px] transition-all duration-300 hover:border-primary/45 hover:bg-background/72">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/65">Step {step.id}</p>
-          <h3 className="mt-3 text-2xl font-semibold leading-tight text-primary">{step.title}</h3>
+          <div className="mt-3 flex items-center gap-3">
+            <IconComponent className="size-6 text-primary/70" />
+            <h3 className="text-2xl font-semibold leading-tight text-primary">{step.title}</h3>
+          </div>
         </div>
         <p className="mt-6 text-base leading-7 text-primary/80">{step.description}</p>
       </article>
@@ -46,14 +51,14 @@ const Approach = () => {
   return (
     <section
       id="approach"
-      className="relative overflow-hidden bg-linear-to-b from-background via-chart-1/20 to-background py-16 sm:py-20"
+      className="relative overflow-hidden py-16 sm:py-20"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(16,52,57,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,52,57,0.08)_1px,transparent_1px)] bg-[size:34px_34px]"
       />
-      <div className="pointer-events-none absolute -right-24 top-16 h-64 w-64 rounded-full bg-chart-2/20 blur-3xl" />
-      <div className="pointer-events-none absolute -left-20 bottom-10 h-56 w-56 rounded-full bg-chart-3/20 blur-3xl" />
+      {/* <div className="pointer-events-none absolute -right-24 top-16 h-64 w-64 rounded-full bg-chart-2/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-10 h-56 w-56 rounded-full bg-chart-3/20 blur-3xl" /> */}
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary/70">Our Approach</p>

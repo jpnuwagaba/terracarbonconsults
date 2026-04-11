@@ -1,11 +1,30 @@
 import Link from 'next/link';
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import {
+  BriefcaseBusiness,
+  ChevronDown,
+  ChevronUp,
+  Compass,
+  DecimalsArrowRight,
+  Hexagon,
+  Leaf,
+  Menu,
+  PersonStanding,
+  Scale,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Sprout,
+  Workflow,
+  X,
+} from 'lucide-react';
 
 type Service = {
   title: string;
   description: string;
   href: string;
+  icon: React.ElementType;
 };
 
 const services: Service[] = [
@@ -14,36 +33,42 @@ const services: Service[] = [
     description:
       'We support carbon projects from early assessment and methodology selection to design, validation, and registration.',
     href: '#',
+    icon: BriefcaseBusiness,
   },
   {
     title: 'MRV & Carbon Accounting',
     description:
       'We build reliable monitoring, reporting, and verification systems backed by strong data and carbon accounting practices.',
     href: '#',
+    icon: DecimalsArrowRight,
   },
   {
     title: 'Climate Finance Advisory',
     description:
       'We help make projects investment-ready through financial modelling, structuring, and access to climate finance opportunities.',
     href: '#',
+    icon: Sprout,
   },
   {
     title: 'Carbon Markets & Policy',
     description:
       'We advise on carbon trading, Article 6, market frameworks, and regulatory pathways for credible market participation.',
     href: '#',
+    icon: Hexagon,
   },
   {
     title: 'Net-Zero & Corporate Advisory',
     description:
       'We support organizations in measuring emissions, shaping decarbonization pathways, and working toward carbon neutrality goals.',
     href: '#',
+    icon: Scale,
   },
   {
     title: 'Capacity Building & Training',
     description:
       'We deliver training, workshops, and advisory support to strengthen carbon market knowledge across teams and institutions.',
     href: '#',
+    icon: PersonStanding,
   },
 ];
 
@@ -52,16 +77,20 @@ type ServiceCardProps = {
 };
 
 const ServiceCard = ({ service }: ServiceCardProps) => {
+  const IconComponent = service.icon;
   return (
     <Link
       href={service.href}
-      className="group relative flex min-h-[220px] flex-col items-start justify-between gap-6 border border-secondary/15 bg-chart-4/24 p-6 transition-all duration-300 hover:border-primary/50 hover:bg-chart-4/16 sm:p-8"
+      className="group relative flex min-h-[220px] flex-col items-start gap-6 border border-secondary/15 bg-chart-4/24 p-6 transition-all duration-300 hover:border-primary/50 hover:bg-chart-4/16 sm:p-8"
     >
       <div className="flex flex-row items-start justify-between">
-        <h3 className="text-3xl font-semibold leading-tight text-secondary sm:text-4xl">{service.title}</h3>
-        <span className="inline-flex shrink-0 items-center justify-center text-secondary/85 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-secondary -rotate-45 group-hover:rotate-0">
-          <ArrowRight className="size-14 stroke-[1.35] sm:size-16" />
-        </span>
+        <div className="flex flex-col items-start gap-3">
+          <IconComponent className="size-14 text-secondary/70 inline-flex shrink-0 items-center justify-center text-secondary/85 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-secondary group-hover:translate-x-4 group-hover:-rotate-10" />
+          <h3 className="mt-4 text-3xl font-semibold leading-tight text-secondary sm:text-4xl">{service.title}</h3>
+        </div>
+        {/* <span className="inline-flex shrink-0 items-center justify-center text-secondary/85 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-secondary -rotate-45 group-hover:rotate-0">
+          <ArrowRight className="size-8 stroke-[1.35]" />
+        </span> */}
       </div>
       <div>
         <p className="mt-4 text-base leading-7 text-secondary/85 sm:text-lg">{service.description}</p>

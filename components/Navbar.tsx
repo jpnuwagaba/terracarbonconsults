@@ -20,6 +20,7 @@ import {
   Workflow,
   X,
 } from 'lucide-react';
+import Link from 'next/link';
 
 type DropdownKey = 'what-we-do' | 'how-we-work' | 'focus-areas';
 
@@ -81,11 +82,11 @@ const dropdownContent: Record<DropdownKey, DropdownContent> = {
   },
 };
 
-const navItems: Array<{ label: string; key?: DropdownKey }> = [
-  { label: 'Services', key: 'what-we-do' },
-  { label: 'Approach', key: 'how-we-work' },
-  { label: 'Sectors', key: 'focus-areas' },
-  { label: 'About' },
+const navItems: Array<{ label: string; key?: DropdownKey; href?: string }> = [
+  { label: 'Services', key: 'what-we-do', href: 'services'  },
+  { label: 'Approach', key: 'how-we-work', href: 'approach' },
+  { label: 'Sectors', key: 'focus-areas', href: 'focus-areas' },
+  { label: 'About', href: 'about' },
 ];
 
 const Navbar = () => {
@@ -125,6 +126,19 @@ const Navbar = () => {
               {navItems.map((item) => {
                 const isActive = activeDropdown === item.key;
                 const canOpen = Boolean(item.key);
+
+                if (!canOpen && item.href) {
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="inline-flex items-center gap-1 transition-opacity hover:opacity-70"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+
                 return (
                   <button
                     key={item.label}
@@ -146,20 +160,21 @@ const Navbar = () => {
             </nav>
 
             <div className="flex items-center justify-center">
-              <span
+              <Link href={'/'}
                 className={`whitespace-nowrap text-center font-bold text-primary transition-[font-size] duration-300 ${isScrolled ? 'text-base xl:text-lg' : 'text-lg xl:text-xl'}`}
               >
                 TerraCarbonConsults
-              </span>
+              </Link>
             </div>
 
             <div className="flex items-center justify-end gap-2">
-              <button
+              <Link className='cursor-pointer' href="mailto:info@terracarbonconsults.com">
+                <button
                   type="button"
                   className={`rounded-full bg-primary ${isScrolled ? 'py-1.5' : 'py-2'} transition-[padding,opacity] duration-300 px-3 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4`}
                 >
-                 Email Us
-                </button>
+                  Email Us
+                </button></Link>
               <button
                 type="button"
                 aria-label="Search"
@@ -214,16 +229,20 @@ const Navbar = () => {
             >
               <nav className="space-y-3">
                 {navItems.map((item) => {
-                  if (!item.key) {
+                  if (!item.key && item.href) {
                     return (
-                      <button
+                      <Link
                         key={item.label}
-                        type="button"
-                        className="w-full rounded-lg border border-black/10 px-4 py-3 text-left text-sm font-semibold text-primary"
+                        href={item.href}
+                        className="block w-full rounded-lg border border-black/10 px-4 py-3 text-left text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
                       >
                         {item.label}
-                      </button>
+                      </Link>
                     );
+                  }
+
+                  if (!item.key) {
+                    return null;
                   }
 
                   const content = dropdownContent[item.key];

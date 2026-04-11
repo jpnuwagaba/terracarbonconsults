@@ -11,7 +11,7 @@ const pillars: Pillar[] = [
   { title: 'High-Integrity Carbon Projects', icon: ShieldCheck },
   { title: 'Technical Expertise', icon: Wrench },
   { title: 'Market Readiness', icon: LineChart },
-  { title: 'Africa-Focused Insight', icon: GiAfrica },
+  { title: 'Global-Focused Insight', icon: GiAfrica },
 ];
 
 type WhyCardProps = {
@@ -34,12 +34,12 @@ const WhyCard = ({ title, icon: Icon }: WhyCardProps) => {
 
 const WhyTerraCarbon = () => {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-background via-chart-1/25 to-background py-16 sm:py-20">
-      <div className="pointer-events-none absolute -left-16 top-10 h-44 w-44 rounded-full bg-chart-2/25 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 bottom-8 h-56 w-56 rounded-full bg-chart-3/20 blur-3xl" />
+    <section className="relative overflow-hidden py-16 sm:py-20">
+      <div className="pointer-events-none absolute -left-16 top-10 h-44 w-44 rounded-full bg-chart-2/15 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 bottom-8 h-56 w-56 rounded-full bg-chart-3/10 blur-3xl" />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary/70">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/70">
           Why TerraCarbon?
         </p>
         <h2 className="text-center mt-4 text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-5xl">
