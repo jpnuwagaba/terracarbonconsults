@@ -2,7 +2,7 @@ import React from 'react';
 
 interface HeroProps {
   bgImg: string;
-  heading: string;
+  heading: React.ReactNode;
   paragraph: string;
 }
 
@@ -20,7 +20,7 @@ const Hero = ({ bgImg, heading, paragraph }: HeroProps) => {
 
       <div className="relative mx-auto flex min-h-[calc(100vh-64px)] w-full max-w-7xl items-center justify-center px-5 py-24 sm:px-6 sm:py-28 lg:px-8">
         <div className="text-center text-background">
-          <h1 className="mx-auto max-w-3xl text-4xl font-bold leading-tight tracking-tight text-background sm:text-5xl lg:text-[4rem]">
+          <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-background sm:text-5xl lg:text-[4rem]">
             {heading}
           </h1>
 

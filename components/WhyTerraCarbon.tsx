@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, ShieldCheck, Wrench } from 'lucide-react';
+import { LineChart, ShieldCheck, Wrench, Earth } from 'lucide-react';
 import { GiAfrica } from "react-icons/gi";
 
 type Pillar = {
@@ -11,7 +11,7 @@ const pillars: Pillar[] = [
   { title: 'High-Integrity Carbon Projects', icon: ShieldCheck },
   { title: 'Technical Expertise', icon: Wrench },
   { title: 'Market Readiness', icon: LineChart },
-  { title: 'Global-Focused Insight', icon: GiAfrica },
+  { title: 'Global-Focused Insight', icon: Earth },
 ];
 
 type WhyCardProps = {

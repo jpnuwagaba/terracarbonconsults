@@ -2,42 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 
-type FocusArea = {
-  title: string;
-  description: string;
-  image: string;
-  tint: string;
-};
-
-const focusAreas: FocusArea[] = [
-  {
-    title: 'Nature-Based Solutions',
-    description: 'Forestry, restoration, and land-use carbon projects.',
-    image: '/assets/nature-based-solutions.webp',
-    tint: 'bg-linear-to-t from-chart-5/70 via-chart-5/30 to-transparent',
-  },
-  {
-    title: 'Renewable Energy',
-    description: 'Clean energy initiatives that generate measurable carbon reductions.',
-    image: '/assets/renewable-energy.webp',
-    tint: 'bg-linear-to-t from-chart-4/70 via-chart-4/30 to-transparent',
-  },
-  {
-    title: 'Agriculture & Land Use',
-    description: 'Sustainable agriculture and soil carbon initiatives.',
-    image: '/assets/land-use.jpg',
-    tint: 'bg-linear-to-t from-chart-3/75 via-chart-3/25 to-transparent',
-  },
-  {
-    title: 'Waste & Circular Systems',
-    description: 'Projects reducing emissions from waste and resource systems.',
-    image: '/assets/circular.png',
-    tint: 'bg-linear-to-t from-chart-2/70 via-chart-2/25 to-transparent',
-  },
-];
+import {getSectors, type Sector} from '@/sanity/lib/sectors';
 
 type FocusCardProps = {
-  area: FocusArea;
+  area: Sector;
   index: number;
 };
 
@@ -46,13 +14,19 @@ const FocusCard = ({ area, index }: FocusCardProps) => {
     <Link href="#" className="group relative block cursor-pointer h-full">
       <article className="group relative flex h-full flex-col overflow-hidden rounded-xs border border-primary/20 bg-background/78 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40">
         <div className="relative h-64 overflow-hidden">
-          <Image
-            src={area.image}
-            alt={`${area.title} illustration`}
-            fill
-            sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 92vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          {area.image ? (
+            <Image
+              src={area.image}
+              alt={area.imageAlt}
+              fill
+              sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 92vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-chart-4/20 px-6 text-center text-sm font-semibold uppercase tracking-[0.16em] text-primary/60">
+              {area.title}
+            </div>
+          )}
 
           <div className="absolute top-4 left-4 bg-teal-500 text-white w-8 h-8 flex items-center justify-center font-mono text-xs font-bold rounded-sm shadow-md">
             0{index + 1}
@@ -72,11 +46,13 @@ const FocusCard = ({ area, index }: FocusCardProps) => {
   );
 };
 
-const FocusAreas = () => {
+const FocusAreas = async () => {
+  const focusAreas = await getSectors();
+
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
-      <div className="pointer-events-none absolute -left-20 top-10 h-56 w-56 rounded-full bg-chart-2/20 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-chart-3/20 blur-3xl" />
+    <section id="focus-areas" className="relative overflow-hidden bg-white py-16 sm:py-20">
+      {/* <div className="pointer-events-none absolute -left-20 top-10 h-56 w-56 rounded-full bg-chart-2/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-chart-3/20 blur-3xl" /> */}
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/70">Focus Areas</p>

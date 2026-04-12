@@ -57,6 +57,56 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       ],
     },
     {
+      name: 'sectorType',
+      title: 'Sector',
+      type: 'document',
+      orderings: [orderRankOrdering],
+      fields: [
+        {
+          name: 'name',
+          title: 'Name',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'briefDescription',
+          title: 'Brief Description',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'detailedDescription',
+          title: 'Detailed Description',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
+          name: 'icon',
+          title: 'Icon',
+          type: 'lucide-icon',
+        },
+        {
+          name: 'sectorImage',
+          title: 'Sector Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'slug',
+          title: 'Slug',
+          type: 'slug',
+          options: {
+            source: 'name',
+            maxLength: 96,
+          },
+        },
+        orderRankField({ type: 'sectorType' }),
+      ],
+    },
+    {
       name: 'aboutUsType',
       title: 'About Us',
       type: 'document',
