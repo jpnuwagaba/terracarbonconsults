@@ -1,8 +1,11 @@
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 import { type SchemaTypeDefinition } from 'sanity'
 
+import {lucideIconType} from './lucideIconType'
+
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    lucideIconType,
     {
       name: 'servicetype',
       title: 'Service',
