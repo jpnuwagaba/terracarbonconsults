@@ -1,76 +1,65 @@
 import Link from 'next/link';
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import {
-  BriefcaseBusiness,
-  ChevronDown,
-  ChevronUp,
-  Compass,
-  DecimalsArrowRight,
-  Hexagon,
-  Leaf,
-  Menu,
-  PersonStanding,
-  Scale,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  Sprout,
-  Workflow,
-  X,
-} from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
+import { client } from '@/sanity/lib/client';
+
+const servicesQuery = `*[_type == "servicetype" && defined(name)]|order(orderRank asc, _createdAt asc) {
+  _id,
+  "title": name,
+  "description": briefDescription,
+  "slug": slug.current,
+  icon
+}`;
+
+type SanityService = {
+  _id: string;
+  title: string;
+  description?: string;
+  slug?: string;
+  icon?: string;
+};
 
 type Service = {
+  id: string;
   title: string;
   description: string;
   href: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
 };
 
-const services: Service[] = [
-  {
-    title: 'Carbon Project Development',
-    description:
-      'We support carbon projects from early assessment and methodology selection to design, validation, and registration.',
-    href: '#',
-    icon: BriefcaseBusiness,
-  },
-  {
-    title: 'MRV & Carbon Accounting',
-    description:
-      'We build reliable monitoring, reporting, and verification systems backed by strong data and carbon accounting practices.',
-    href: '#',
-    icon: DecimalsArrowRight,
-  },
-  {
-    title: 'Climate Finance Advisory',
-    description:
-      'We help make projects investment-ready through financial modelling, structuring, and access to climate finance opportunities.',
-    href: '#',
-    icon: Sprout,
-  },
-  {
-    title: 'Carbon Markets & Policy',
-    description:
-      'We advise on carbon trading, Article 6, market frameworks, and regulatory pathways for credible market participation.',
-    href: '#',
-    icon: Hexagon,
-  },
-  {
-    title: 'Net-Zero & Corporate Advisory',
-    description:
-      'We support organizations in measuring emissions, shaping decarbonization pathways, and working toward carbon neutrality goals.',
-    href: '#',
-    icon: Scale,
-  },
-  {
-    title: 'Capacity Building & Training',
-    description:
-      'We deliver training, workshops, and advisory support to strengthen carbon market knowledge across teams and institutions.',
-    href: '#',
-    icon: PersonStanding,
-  },
-];
+const toPascalCase = (value: string) =>
+  value
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+
+const isLucideIcon = (icon: unknown): icon is LucideIcon =>
+  typeof icon === 'object' && icon !== null && '$$typeof' in icon && 'render' in icon;
+
+const getIconComponent = (icon?: string): LucideIcon => {
+  if (!icon) {
+    return LucideIcons.Sparkles;
+  }
+
+  const iconName = toPascalCase(icon);
+  const iconComponent = LucideIcons[iconName as keyof typeof LucideIcons];
+
+  return isLucideIcon(iconComponent) ? iconComponent : LucideIcons.Sparkles;
+};
+
+const getServices = async (): Promise<Service[]> => {
+  const sanityServices = await client.fetch<SanityService[]>(servicesQuery);
+
+  return sanityServices.map((service) => ({
+    id: service._id,
+    title: service.title,
+    description: service.description ?? '',
+    href: service.slug ? `/services/${service.slug}` : '#',
+    icon: getIconComponent(service.icon),
+  }));
+};
 
 type ServiceCardProps = {
   service: Service;
@@ -99,7 +88,9 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   );
 };
 
-const Services = () => {
+const Services = async () => {
+  const services = await getServices();
+
   return (
     <section className="relative overflow-hidden py-14 text-secondary sm:py-16 lg:py-20">
       <div aria-hidden className="absolute inset-0">
@@ -118,7 +109,7 @@ const Services = () => {
 
         <div className="mt-10 grid overflow-hidden border border-secondary/15 md:grid-cols-2 lg:mt-12">
           {services.map((service) => (
-            <ServiceCard key={service.title} service={service} />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>

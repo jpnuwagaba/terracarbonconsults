@@ -83,7 +83,7 @@ const dropdownContent: Record<DropdownKey, DropdownContent> = {
 };
 
 const navItems: Array<{ label: string; key?: DropdownKey; href?: string }> = [
-  { label: 'Services', key: 'what-we-do', href: 'services'  },
+  { label: 'Services', key: 'what-we-do', href: 'services' },
   { label: 'Approach', key: 'how-we-work', href: 'approach' },
   { label: 'Sectors', key: 'focus-areas', href: 'focus-areas' },
   { label: 'About', href: 'about' },
@@ -140,21 +140,23 @@ const Navbar = () => {
                 }
 
                 return (
-                  <button
-                    key={item.label}
-                    type="button"
-                    onMouseEnter={() => item.key && setActiveDropdown(item.key)}
-                    onFocus={() => item.key && setActiveDropdown(item.key)}
-                    className={`inline-flex items-center gap-1 transition-opacity ${canOpen ? 'cursor-pointer hover:opacity-70' : 'cursor-default'} ${isActive ? 'opacity-70' : ''}`}
-                  >
-                    {item.label}
-                    {canOpen &&
-                      (isActive ? (
-                        <ChevronUp className="size-4" />
-                      ) : (
-                        <ChevronDown className="size-4" />
-                      ))}
-                  </button>
+                  <Link key={item.label} href={item.href || '#'}>
+                    <button
+                      key={item.label}
+                      type="button"
+                      onMouseEnter={() => item.key && setActiveDropdown(item.key)}
+                      onFocus={() => item.key && setActiveDropdown(item.key)}
+                      className={`inline-flex items-center gap-1 transition-opacity ${canOpen ? 'cursor-pointer hover:opacity-70' : 'cursor-default'} ${isActive ? 'opacity-70' : ''}`}
+                    >
+                      {item.label}
+                      {canOpen &&
+                        (isActive ? (
+                          <ChevronUp className="size-4" />
+                        ) : (
+                          <ChevronDown className="size-4" />
+                        ))}
+                    </button>
+                  </Link>
                 );
               })}
             </nav>
@@ -190,11 +192,11 @@ const Navbar = () => {
           <div
             className={`mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 transition-[height,padding] duration-300 sm:px-6 lg:hidden ${isScrolled ? 'h-14 py-2' : 'h-16 py-3'}`}
           >
-            <span
+            <Link href={'/'}
               className={`font-bold tracking-tight text-primary transition-[font-size] duration-300 ${isScrolled ? 'text-sm sm:text-base' : 'text-base sm:text-lg'}`}
             >
               TerraCarbonConsults
-            </span>
+            </Link>
 
             <div className="flex items-center gap-2">
               <button
