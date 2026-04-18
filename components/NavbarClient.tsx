@@ -3,37 +3,38 @@
 import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  BriefcaseBusiness,
   ChevronDown,
   ChevronUp,
   Compass,
-  DecimalsArrowRight,
-  Hexagon,
   Leaf,
   Menu,
-  PersonStanding,
-  Scale,
   Search,
   ShieldCheck,
   Sparkles,
-  Sprout,
   Workflow,
   X,
 } from 'lucide-react';
+import { DynamicIcon, iconNames, type IconName } from 'lucide-react/dynamic';
 import Link from 'next/link';
 import type {Sector} from '@/sanity/lib/sectors';
+import type {Service} from '@/sanity/lib/services';
 
 type DropdownKey = 'what-we-do' | 'how-we-work' | 'focus-areas';
 
 type DropdownItem = {
   title: string;
   description?: string;
-  icon: React.ElementType;
+  icon?: React.ElementType;
+  iconName?: IconName;
 };
 
 type DropdownContent = {
   heading: string;
   description: string;
+  cta?: {
+    label: string;
+    href: string;
+  };
   items: DropdownItem[];
   imageSrc: string;
   imageAlt: string;
@@ -44,14 +45,11 @@ const dropdownContent: Record<DropdownKey, DropdownContent> = {
     heading: 'What We Do',
     description:
       'We design and deliver carbon market solutions that help climate projects move from early concept to verified impact and market readiness. Our team supports developers, investors, and institutions across the full carbon project lifecycle, from structuring and certification to monitoring, compliance, and credit commercialization.',
-    items: [
-      { title: 'Carbon Project Development', icon: BriefcaseBusiness },
-      { title: 'MRV & Carbon Accounting', icon: DecimalsArrowRight },
-      { title: 'Climate Finance Advisory', icon: Sprout },
-      { title: 'Carbon Markets & Policy', icon: Hexagon },
-      { title: 'Corporate Net-Zero Advisory', icon: Scale },
-      { title: 'Capacity Building', icon: PersonStanding },
-    ],
+    cta: {
+      label: 'Learn More',
+      href: '/services',
+    },
+    items: [],
     imageSrc:
       'https://images.pexels.com/photos/3727689/pexels-photo-3727689.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     imageAlt: 'Global climate and carbon market illustration',
@@ -81,19 +79,42 @@ const dropdownContent: Record<DropdownKey, DropdownContent> = {
 };
 
 const navItems: Array<{ label: string; key?: DropdownKey; href?: string }> = [
-  { label: 'Services', key: 'what-we-do', href: '#services' },
-  { label: 'Approach', key: 'how-we-work', href: '#approach' },
+  { label: 'Services', key: 'what-we-do', href: '/services' },
+  { label: 'Approach', key: 'how-we-work', href: '/approach' },
   { label: 'Sectors', key: 'focus-areas', href: '#focus-areas' },
   { label: 'About', href: 'about' },
 ];
 
 const sectorDropdownIcons = [Leaf, Sparkles, Workflow, Compass];
+const fallbackServiceIconName: IconName = 'sparkles';
+const lucideIconNameSet = new Set<string>(iconNames);
+
+const getServiceIconName = (icon?: string): IconName =>
+  icon && lucideIconNameSet.has(icon) ? (icon as IconName) : fallbackServiceIconName;
+
+const DropdownIconFallback = () => <Sparkles className="size-4 text-primary" />;
+
+const DropdownItemIcon = ({ item }: { item: DropdownItem }) => {
+  if (item.icon) {
+    const Icon = item.icon;
+    return <Icon className="size-4 text-primary" />;
+  }
+
+  return (
+    <DynamicIcon
+      name={item.iconName ?? fallbackServiceIconName}
+      className="size-4 text-primary"
+      fallback={DropdownIconFallback}
+    />
+  );
+};
 
 type NavbarClientProps = {
   sectors: Sector[];
+  services: Service[];
 };
 
-const NavbarClient = ({ sectors }: NavbarClientProps) => {
+const NavbarClient = ({ sectors, services }: NavbarClientProps) => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<DropdownKey | null>(null);
@@ -104,6 +125,13 @@ const NavbarClient = ({ sectors }: NavbarClientProps) => {
 
     return {
       ...dropdownContent,
+      'what-we-do': {
+        ...dropdownContent['what-we-do'],
+        items: services.map((service) => ({
+          title: service.title,
+          iconName: getServiceIconName(service.icon),
+        })),
+      },
       'focus-areas': {
         ...dropdownContent['focus-areas'],
         items: sectors.map((sector, index) => ({
@@ -115,7 +143,7 @@ const NavbarClient = ({ sectors }: NavbarClientProps) => {
         imageAlt: firstSectorWithImage?.imageAlt ?? dropdownContent['focus-areas'].imageAlt,
       },
     };
-  }, [sectors]);
+  }, [sectors, services]);
 
   const activeSections = useMemo(() => {
     if (!activeDropdown) return null;
@@ -292,28 +320,34 @@ const NavbarClient = ({ sectors }: NavbarClientProps) => {
                       {isExpanded && (
                         <div className="mt-4 space-y-4 rounded-lg bg-[#f4f5f2] p-3 sm:p-4">
                           <p className="text-xs leading-6 text-primary/80 sm:text-sm">{content.description}</p>
+                          {content.cta && (
+                            <Link
+                              href={content.cta.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
+                            >
+                              {content.cta.label}
+                            </Link>
+                          )}
 
                           <ul className="grid gap-2 sm:grid-cols-2">
-                            {content.items.map((entry) => {
-                              const Icon = entry.icon;
-                              return (
-                                <li key={entry.title} className="flex items-center gap-2">
-                                  <span className="flex size-8 items-center justify-center rounded-full border border-primary/20 bg-white">
-                                    <Icon className="size-4 text-primary" />
+                            {content.items.map((entry) => (
+                              <li key={entry.title} className="flex items-center gap-2">
+                                <span className="flex size-8 items-center justify-center rounded-full border border-primary/20 bg-white">
+                                  <DropdownItemIcon item={entry} />
+                                </span>
+                                <span>
+                                  <span className="text-xs font-medium text-primary/90 sm:text-sm">
+                                    {entry.title}
                                   </span>
-                                  <span>
-                                    <span className="text-xs font-medium text-primary/90 sm:text-sm">
-                                      {entry.title}
+                                  {entry.description && (
+                                    <span className="mt-0.5 block text-[11px] leading-4 text-primary/65 sm:text-xs">
+                                      {entry.description}
                                     </span>
-                                    {entry.description && (
-                                      <span className="mt-0.5 block text-[11px] leading-4 text-primary/65 sm:text-xs">
-                                        {entry.description}
-                                      </span>
-                                    )}
-                                  </span>
-                                </li>
-                              );
-                            })}
+                                  )}
+                                </span>
+                              </li>
+                            ))}
                           </ul>
 
                           <div className="relative h-40 overflow-hidden rounded-xl border border-black/10 bg-white">
@@ -343,27 +377,32 @@ const NavbarClient = ({ sectors }: NavbarClientProps) => {
                     <p className="mt-4 max-w-md text-sm leading-6 text-primary/80">
                       {activeSections.description}
                     </p>
+                    {activeSections.cta && (
+                      <Link
+                        href={activeSections.cta.href}
+                        className="mt-5 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
+                      >
+                        {activeSections.cta.label}
+                      </Link>
+                    )}
                   </div>
 
                   <ul className="grid content-start gap-4 md:grid-cols-2 xl:grid-cols-1">
-                    {activeSections.items.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <li key={item.title} className="flex items-center gap-3">
-                          <span className="flex size-9 items-center justify-center rounded-full border border-primary/20 bg-primary/5">
-                            <Icon className="size-4 text-primary" />
-                          </span>
-                          <span>
-                            <span className="text-sm font-medium text-primary/90">{item.title}</span>
-                            {item.description && (
-                              <span className="mt-1 block text-xs leading-5 text-primary/65">
-                                {item.description}
-                              </span>
-                            )}
-                          </span>
-                        </li>
-                      );
-                    })}
+                    {activeSections.items.map((item) => (
+                      <li key={item.title} className="flex items-center gap-3">
+                        <span className="flex size-9 items-center justify-center rounded-full border border-primary/20 bg-primary/5">
+                          <DropdownItemIcon item={item} />
+                        </span>
+                        <span>
+                          <span className="text-sm font-medium text-primary/90">{item.title}</span>
+                          {item.description && (
+                            <span className="mt-1 block text-xs leading-5 text-primary/65">
+                              {item.description}
+                            </span>
+                          )}
+                        </span>
+                      </li>
+                    ))}
                   </ul>
 
                   <div className="hidden bg-black/10 xl:block" />

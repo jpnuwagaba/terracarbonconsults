@@ -2,31 +2,7 @@ import Link from 'next/link';
 import * as LucideIcons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-import { client } from '@/sanity/lib/client';
-
-const servicesQuery = `*[_type == "servicetype" && defined(name)]|order(orderRank asc, _createdAt asc) {
-  _id,
-  "title": name,
-  "description": briefDescription,
-  "slug": slug.current,
-  icon
-}`;
-
-type SanityService = {
-  _id: string;
-  title: string;
-  description?: string;
-  slug?: string;
-  icon?: string;
-};
-
-type Service = {
-  id: string;
-  title: string;
-  description: string;
-  href: string;
-  icon: LucideIcon;
-};
+import {getServices, type Service} from '@/sanity/lib/services';
 
 const toPascalCase = (value: string) =>
   value
@@ -49,24 +25,14 @@ const getIconComponent = (icon?: string): LucideIcon => {
   return isLucideIcon(iconComponent) ? iconComponent : LucideIcons.Sparkles;
 };
 
-const getServices = async (): Promise<Service[]> => {
-  const sanityServices = await client.fetch<SanityService[]>(servicesQuery);
-
-  return sanityServices.map((service) => ({
-    id: service._id,
-    title: service.title,
-    description: service.description ?? '',
-    href: service.slug ? `/services/${service.slug}` : '#',
-    icon: getIconComponent(service.icon),
-  }));
-};
-
 type ServiceCardProps = {
-  service: Service;
+  service: Service & {
+    iconComponent: LucideIcon;
+  };
 };
 
 const ServiceCard = ({ service }: ServiceCardProps) => {
-  const IconComponent = service.icon;
+  const IconComponent = service.iconComponent;
   return (
     <Link
       href={service.href}
@@ -88,11 +54,20 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   );
 };
 
-const Services = async () => {
+const getServiceCards = async (): Promise<ServiceCardProps['service'][]> => {
   const services = await getServices();
 
+  return services.map((service) => ({
+    ...service,
+    iconComponent: getIconComponent(service.icon),
+  }));
+};
+
+const Services = async () => {
+  const services = await getServiceCards();
+
   return (
-    <section className="relative overflow-hidden py-14 text-secondary sm:py-16 lg:py-20">
+    <section id="services" className="relative overflow-hidden py-14 text-secondary sm:py-16 lg:py-20">
       <div aria-hidden className="absolute inset-0">
         <div className="h-full w-full bg-[url('https://images.pexels.com/photos/243138/pexels-photo-243138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-center" />
         <div className="absolute inset-0 bg-chart-5/80" />
