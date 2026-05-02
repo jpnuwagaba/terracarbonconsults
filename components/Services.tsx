@@ -79,7 +79,7 @@ const Services = async () => {
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-secondary/70">Services</p>
         <h2 className="text-center mt-4 text-3xl font-bold leading-tight text-secondary sm:text-4xl lg:text-5xl">
-          Carbon Advisory and Project Delivery
+          Carbon advisory and project delivery
         </h2>
 
         <div className="mt-10 grid overflow-hidden border border-secondary/15 md:grid-cols-2 lg:mt-12">

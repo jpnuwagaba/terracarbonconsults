@@ -45,7 +45,7 @@ const About = () => {
 
             <div className="mt-10">
               <Link
-                href="#"
+                href="about"
                 className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
               >
                 Learn More

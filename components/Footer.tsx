@@ -50,18 +50,8 @@ const Footer = () => {
       <div className="pointer-events-none absolute right-14 top-52 h-72 w-72 rounded-full bg-chart-3/30 blur-3xl" />
       <div className="pointer-events-none absolute -left-24 bottom-24 h-72 w-72 rounded-full bg-chart-2/25 blur-3xl" />
 
-      <div className="relative mx-auto grid w-full max-w-[1500px] gap-0 lg:grid-cols-[220px_1fr]">
-        <div className="hidden border-r border-secondary/15 px-8 py-16 lg:flex lg:items-center lg:justify-center">
-          <p className="[writing-mode:vertical-rl] rotate-180 text-center text-5xl font-bold uppercase tracking-[0.2em] text-secondary/90">
-            Climate Solutions Built With Integrity
-          </p>
-        </div>
-
+      <div className="relative mx-auto w-full max-w-[1500px]">
         <div className="px-5 pb-10 pt-14 sm:px-8 md:px-10 lg:px-14 xl:px-20">
-          <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.25em] text-secondary/75 lg:hidden">
-            Climate Solutions Built With Integrity
-          </p>
-
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr_1.2fr] xl:gap-16">
             <div>
               <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-secondary">Navigate</h3>

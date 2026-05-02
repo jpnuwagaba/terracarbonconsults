@@ -63,7 +63,7 @@ const Approach = () => {
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary/70">Our Approach</p>
         <h2 className="mt-4 text-center text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-5xl">
-          A Structured Path From Opportunity to Market
+          A structured path from opportunity to market
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-7 text-primary/80 sm:text-lg">
           A clear, end-to-end workflow that takes projects from initial potential through technical

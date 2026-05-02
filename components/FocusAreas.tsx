@@ -57,7 +57,7 @@ const FocusAreas = async () => {
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/70">Focus Areas</p>
         <h2 className="mt-4 text-center text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-5xl">
-          Sectors We Work Across
+          Sectors we work across
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-7 text-primary/80 sm:text-lg">
           Our delivery model adapts to high-impact sectors where strong project design and measurable

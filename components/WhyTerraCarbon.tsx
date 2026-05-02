@@ -43,7 +43,7 @@ const WhyTerraCarbon = () => {
           Why TerraCarbon?
         </p>
         <h2 className="text-center mt-4 text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-5xl">
-          What Sets Us Apart
+          What sets us apart
         </h2>
 
         <div className="mt-8 grid overflow-hidden rounded-xs border border-primary/20 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 items-start">
