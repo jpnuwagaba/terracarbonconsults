@@ -1,5 +1,5 @@
 export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-04-11'
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
 
 const defaultDataset = 'terracarbonconsults-content'
 const defaultProjectId = 'z6pxm1h7'

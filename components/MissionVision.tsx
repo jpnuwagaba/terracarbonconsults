@@ -18,7 +18,7 @@ const MissionVision = () => {
             </div>
             <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
             <p className="mt-4 text-base leading-7 text-primary/80">
-              To be the leading catalyst for high-quality carbon projects in Africa, connecting projects with global markets to
+              To be a leading catalyst for high-quality carbon projects globally, connecting projects with global markets to
               achieve tangible climate and community benefits.
             </p>
           </div>
@@ -30,7 +30,7 @@ const MissionVision = () => {
             </div>
             <h3 className="text-2xl font-bold text-primary">Our Vision</h3>
             <p className="mt-4 text-base leading-7 text-primary/80">
-              A future where Africa leads the global climate economy, powering its development through sustainable, nature-based,
+              A future where the global climate economy is powered through sustainable, nature-based,
               and renewable energy solutions.
             </p>
           </div>

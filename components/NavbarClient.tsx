@@ -79,10 +79,10 @@ const dropdownContent: Record<DropdownKey, DropdownContent> = {
 };
 
 const navItems: Array<{ label: string; key?: DropdownKey; href?: string }> = [
+  { label: 'About', href: 'about' },
   { label: 'Services', key: 'what-we-do', href: '/services' },
   { label: 'Approach', key: 'how-we-work', href: '/approach' },
   { label: 'Sectors', key: 'focus-areas', href: '#focus-areas' },
-  { label: 'About', href: 'about' },
 ];
 
 const sectorDropdownIcons = [Leaf, Sparkles, Workflow, Compass];
@@ -170,6 +170,14 @@ const NavbarClient = ({ sectors, services }: NavbarClientProps) => {
           <div
             className={`mx-auto hidden w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-8 transition-[height] duration-300 lg:grid xl:px-10 ${isScrolled ? 'h-[70px]' : 'h-[84px]'}`}
           >
+            <div className="flex items-center justify-start">
+              <Link href={'/'}
+                className={`whitespace-nowrap text-center font-bold text-primary transition-[font-size] duration-300 ${isScrolled ? 'text-base xl:text-lg' : 'text-lg xl:text-xl'}`}
+              >
+                TerraCarbonConsults
+              </Link>
+            </div>
+
             <nav
               className={`flex items-center font-bold text-primary transition-[gap,font-size] duration-300 ${isScrolled ? 'gap-4 text-[13px]' : 'gap-5 text-sm'}`}
             >
@@ -210,14 +218,6 @@ const NavbarClient = ({ sectors, services }: NavbarClientProps) => {
                 );
               })}
             </nav>
-
-            <div className="flex items-center justify-center">
-              <Link href={'/'}
-                className={`whitespace-nowrap text-center font-bold text-primary transition-[font-size] duration-300 ${isScrolled ? 'text-base xl:text-lg' : 'text-lg xl:text-xl'}`}
-              >
-                TerraCarbonConsults
-              </Link>
-            </div>
 
             <div className="flex items-center justify-end gap-2">
               <Link className='cursor-pointer' href="mailto:info@terracarbonconsults.com">
