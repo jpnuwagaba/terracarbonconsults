@@ -14,7 +14,7 @@ const page = () => {
 			/>
       <MissionVision />
       <Aboutdetails />
-      <Team />
+      {/* <Team /> */}
     </>
   )
 }
