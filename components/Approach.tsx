@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { ArrowRight, HandFist, ChartNoAxesGantt, DecimalsArrowRight, CircleDollarSign } from 'lucide-react';
+import { ArrowRight, HandFist, ChartNoAxesGantt, DecimalsArrowRight, CircleDollarSign, ShieldCheck } from 'lucide-react';
 
 type ApproachStep = {
   id: number;
@@ -12,8 +12,9 @@ type ApproachStep = {
 const approachSteps: ApproachStep[] = [
   { id: 1, title: 'Opportunity', description: 'Feasibility & assessment', icon: HandFist },
   { id: 2, title: 'Design', description: 'Certification & structuring', icon: ChartNoAxesGantt },
-  { id: 3, title: 'MRV', description: 'Monitoring & reporting', icon: DecimalsArrowRight },
-  { id: 4, title: 'Market', description: 'Issuance & trading', icon: CircleDollarSign },
+  { id: 3, title: 'Validate', description: 'Validation and Verification', icon: ShieldCheck },
+  { id: 4, title: 'MRV', description: 'Monitoring & reporting', icon: DecimalsArrowRight },
+  { id: 5, title: 'Market', description: 'Issuance & trading', icon: CircleDollarSign },
 ];
 
 type StepTileProps = {

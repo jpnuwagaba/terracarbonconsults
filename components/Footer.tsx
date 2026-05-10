@@ -96,7 +96,7 @@ const Footer = () => {
                   <p className="mt-2 text-base leading-7">
                     Supporting carbon projects across
                     <br />
-                    Africa&apos;s climate and carbon markets
+                    the globe&apos;s climate and carbon markets
                   </p>
                 </div>
 

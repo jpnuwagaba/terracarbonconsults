@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Terra Carbon Consults",
-  description: "A platform to connect carbon offset projects in Africa with global buyers, fostering transparency and sustainability in the carbon market.",
+  title: "TerraCarbon Consults",
+  description: "An environmental consultancy connecting carbon projects with global buyers through transparent, sustainable climate solutions.",
 };
 
 export default function RootLayout({
