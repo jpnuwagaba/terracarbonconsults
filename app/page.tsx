@@ -22,7 +22,7 @@ export default function Page() {
 				paragraph="We help climate projects move from early concept to verified carbon credits through expert project development, rigorous monitoring, and trusted market connections."
 			/>
 			<About />
-			<Palette />
+			{/* <Palette /> */}
 			<Services />
 			<WhyTerraCarbon />
 			<Approach />
