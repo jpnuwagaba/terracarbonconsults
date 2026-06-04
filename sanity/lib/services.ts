@@ -25,13 +25,22 @@ const servicesQuery = `*[_type == "servicetype" && defined(name)]|order(orderRan
 }`
 
 export const getServices = async (): Promise<Service[]> => {
-  const services = await client.fetch<SanityService[]>(servicesQuery)
+  try {
+    const services = await client.fetch<SanityService[]>(servicesQuery)
 
-  return services.map((service) => ({
-    id: service._id,
-    title: service.title ?? '',
-    description: service.description ?? '',
-    href: service.slug ? `/services/${service.slug}` : '#',
-    icon: service.icon,
-  }))
+    return (services || []).map((service) => ({
+      id: service._id,
+      title: service.title ?? '',
+      description: service.description ?? '',
+      href: service.slug ? `/services/${service.slug}` : '#',
+      icon: service.icon,
+    }))
+  } catch (err) {
+    // Fail gracefully in dev if the external fetch fails (network, invalid config, etc.)
+    // Log the error so the developer can inspect details in the terminal.
+    // Return an empty array so the page can render without crashing.
+    // eslint-disable-next-line no-console
+    console.error('Failed to fetch services from Sanity:', err)
+    return []
+  }
 }

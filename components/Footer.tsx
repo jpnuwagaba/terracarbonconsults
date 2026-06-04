@@ -133,7 +133,7 @@ const Footer = () => {
                 </h4>
                 <p className="mt-4 max-w-md text-base leading-7 text-secondary/90">
                   Receive updates on carbon markets, climate finance opportunities, and insights on
-                  developing high-integrity carbon projects across Africa.
+                  developing high-integrity carbon projects.
                 </p>
 
                 <form className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
