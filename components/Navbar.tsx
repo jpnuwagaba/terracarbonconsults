@@ -9,7 +9,7 @@ const navItems: Array<{ label: string; href: string }> = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Approach', href: '/approach' },
-  { label: 'Sectors', href: '#focus-areas' },
+  { label: 'Sectors', href: '/sectors' },
 ];
 
 const Navbar = () => {
