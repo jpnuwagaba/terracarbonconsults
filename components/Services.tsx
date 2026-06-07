@@ -75,9 +75,7 @@ const Services = async () => {
 
         <div className="mt-10 grid overflow-hidden border border-secondary/15 md:grid-cols-2 lg:grid-cols-3 lg:mt-12 gap-6">
           {services.map((service) => (
-            <Link href={service.href}>
-              <ServiceCard key={service.id} service={service} />
-            </Link>
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>

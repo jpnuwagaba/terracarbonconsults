@@ -82,7 +82,6 @@ export const getServices = async (): Promise<Service[]> => {
     // Fail gracefully in dev if the external fetch fails (network, invalid config, etc.)
     // Log the error so the developer can inspect details in the terminal.
     // Return an empty array so the page can render without crashing.
-    // eslint-disable-next-line no-console
     console.error('Failed to fetch services from Sanity:', err)
     return []
   }

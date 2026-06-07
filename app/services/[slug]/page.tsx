@@ -1,5 +1,5 @@
 import React from 'react'
-import { getServices, type Service } from '@/sanity/lib/services';
+import { getServices } from '@/sanity/lib/services';
 import PortableTextRenderer from '@/components/PortableTextRenderer';
 
 type ServicePageProps = {
