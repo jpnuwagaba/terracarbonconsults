@@ -1,9 +1,29 @@
 import {client} from './client'
 
+export type PortableTextBlock = {
+  _key?: string
+  _type: string
+  children?: Array<{
+    _key?: string
+    _type: string
+    text?: string
+    bold?: boolean
+    italic?: boolean
+    underline?: boolean
+    code?: boolean
+    marks?: string[]
+  }>
+  level?: number
+  listItem?: string
+  style?: string
+  markDefs?: unknown[]
+}
+
 export type Service = {
   id: string
   title: string
-  description: string
+  summary: string
+  description: string | PortableTextBlock[]
   href: string
   icon?: string
 }
@@ -11,15 +31,37 @@ export type Service = {
 type SanityService = {
   _id: string
   title?: string
-  description?: string
+  summary?: string
+  description?: unknown
   slug?: string
   icon?: string
+}
+
+const isPortableTextBlockArray = (value: unknown): value is PortableTextBlock[] => {
+  return Array.isArray(value) && value.every((block) => (
+    block !== null &&
+    typeof block === 'object' &&
+    '_type' in block
+  ))
+}
+
+const toServiceDescription = (value: unknown): Service['description'] => {
+  if (typeof value === 'string') {
+    return value
+  }
+
+  if (isPortableTextBlockArray(value)) {
+    return value
+  }
+
+  return ''
 }
 
 const servicesQuery = `*[_type == "servicetype" && defined(name)]|order(orderRank asc, _createdAt asc) {
   _id,
   "title": name,
-  "description": briefDescription,
+  "summary": briefDescription,
+  "description": detailedDescription,
   "slug": slug.current,
   icon
 }`
@@ -31,7 +73,8 @@ export const getServices = async (): Promise<Service[]> => {
     return (services || []).map((service) => ({
       id: service._id,
       title: service.title ?? '',
-      description: service.description ?? '',
+      summary: service.summary ?? '',
+      description: toServiceDescription(service.description),
       href: service.slug ? `/services/${service.slug}` : '#',
       icon: service.icon,
     }))

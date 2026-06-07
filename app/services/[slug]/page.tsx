@@ -1,30 +1,37 @@
 import React from 'react'
-//fetch content from sanity
-import {getServices, type Service} from '@/sanity/lib/services';
+import { getServices, type Service } from '@/sanity/lib/services';
+import PortableTextRenderer from '@/components/PortableTextRenderer';
 
-const getService = async(): Promise<Service[]> => {
-  const service = await getServices();
+type ServicePageProps = {
+  params: Promise<{
+    slug: string
+  }>
+}
 
-  return service.map((service) => ({
-    ...service,
-  }));
-};
+const page = async ({ params }: ServicePageProps) => {
+  const { slug } = await params;
+  const services = await getServices();
+  
+  // Find the service matching the slug
+  const service = services.find((s) => s.href === `/services/${slug}`);
 
+  if (!service) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Service not found</p>
+      </div>
+    );
+  }
 
-const page = () => {
   return (
-    <>
-        {
-            getService().then((services) => {
-                return services.map((service) => (
-                    <div key={service.id}>
-                        <h2>{service.title}</h2>
-                        <p>{service.description}</p>
-                    </div>
-                ))
-            })
-        }
-    </>
+    <div className="min-h-screen py-20">
+      <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-10">
+        <h1 className="text-4xl font-bold text-primary mb-4">{service.title}</h1>
+        <div className="prose prose-primary max-w-none">
+          <PortableTextRenderer content={service.description} />
+        </div>
+      </div>
+    </div>
   )
 }
 
