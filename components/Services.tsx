@@ -36,12 +36,12 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   return (
     <Link
       href={service.href}
-      className="group relative flex min-h-[220px] flex-col items-center gap-6 bg-white rounded-lg border border-secondary/15 p-6 transition-all duration-300 hover:border-primary/50 sm:p-8 text-center"
+      className="group relative flex min-h-[220px] flex-col items-center gap-6 bg-white rounded-lg border border-border p-6 transition-all duration-300 hover:border-primary/50 sm:p-8 text-center"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary group-hover:bg-primary/20">
+      <div className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-ring group-hover:bg-primary/20">
         <IconComponent className="h-6 w-6 " />
       </div>
-      <h3 className="text-lg font-semibold text-foreground/70">{service.title}</h3>
+      <h3 className="text-lg font-semibold text-primary">{service.title}</h3>
     </Link>
   );
 };
@@ -68,12 +68,12 @@ const Services = async () => {
       <div className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-chart-2/15 blur-3xl" /> */}
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-secondary/70">Services</p>
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Services</p>
         <h2 className="text-center mt-4 text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-5xl">
           Carbon advisory and project delivery
         </h2>
 
-        <div className="mt-10 grid overflow-hidden border border-secondary/15 md:grid-cols-2 lg:grid-cols-3 lg:mt-12 gap-6">
+        <div className="mt-10 grid overflow-hidden md:grid-cols-2 lg:grid-cols-3 lg:mt-12 gap-6">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

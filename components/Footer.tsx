@@ -3,6 +3,7 @@ import React from 'react';
 import { Mail } from 'lucide-react';
 import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import Image from 'next/image';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -43,7 +44,7 @@ const Footer = () => {
     <footer className="relative overflow-hidden text-secondary">
       <div aria-hidden className="absolute inset-0">
         <div className="h-full w-full bg-[url('/assets/footer-bg.jpg')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-linear-to-br from-chart-5/85 via-chart-5/75 to-chart-4/80" />
+        <div className="absolute inset-0 bg-linear-to-br from-primary via-primary/85 to-chart-1/90" />
       </div>
 
       <div className="pointer-events-none absolute -right-36 top-10 h-80 w-80 rounded-full bg-chart-4/45 blur-3xl" />
@@ -54,13 +55,13 @@ const Footer = () => {
         <div className="px-5 pb-10 pt-14 sm:px-8 md:px-10 lg:px-14 xl:px-20">
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr_1.2fr] xl:gap-16">
             <div>
-              <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-secondary">Navigate</h3>
+              <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-primary-foreground">Navigate</h3>
               <ul className="mt-6 space-y-3">
                 {navLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-base text-secondary/90 transition-colors hover:text-secondary"
+                      className="text-base text-primary-foreground/90 transition-colors hover:text-secondary"
                     >
                       {link.label}
                     </Link>
@@ -70,10 +71,10 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-secondary">Contact</h3>
-              <div className="mt-6 space-y-5 text-secondary/90">
+              <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-primary-foreground">Contact</h3>
+              <div className="mt-6 space-y-5 text-primary-foreground/90">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-secondary/70">Email</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-primary-foreground/70">Email</p>
                   <Link
                     href="mailto:info@terracarbonconsults.com"
                     className="mt-2 block text-base font-medium transition-colors hover:text-secondary"
@@ -83,7 +84,7 @@ const Footer = () => {
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-secondary/70">Head Office</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-primary-foreground/70">Head Office</p>
                   <p className="mt-2 text-base leading-7">
                     TerraCarbon Consults
                     <br />
@@ -92,7 +93,7 @@ const Footer = () => {
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-secondary/70">Regional Engagement</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-primary-foreground/70">Regional Engagement</p>
                   <p className="mt-2 text-base leading-7">
                     Supporting carbon projects across
                     <br />
@@ -102,7 +103,7 @@ const Footer = () => {
 
                 <button
                   type="button"
-                  className="mt-2 inline-flex rounded-full bg-primary px-7 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
+                  className="mt-2 inline-flex rounded-full bg-secondary px-7 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-secondary/90 cursor-pointer"
                 >
                   Get In Touch
                 </button>
@@ -110,7 +111,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-secondary">Social</h3>
+              <h3 className="text-3xl font-bold uppercase tracking-[0.08em] text-primary-foreground">Social</h3>
               <div className="mt-6 flex flex-wrap gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -119,7 +120,7 @@ const Footer = () => {
                       key={social.label}
                       href={social.href}
                       aria-label={social.label}
-                      className="inline-flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors hover:bg-chart-4"
+                      className="inline-flex size-11 items-center justify-center rounded-full bg-secondary text-primary-foreground transition-colors hover:bg-secondary/90"
                     >
                       <Icon className="size-5" />
                     </Link>
@@ -128,10 +129,10 @@ const Footer = () => {
               </div>
 
               <div className="mt-10">
-                <h4 className="text-2xl font-bold uppercase tracking-[0.05em] text-secondary">
+                <h4 className="text-2xl font-bold uppercase tracking-[0.05em] text-primary-foreground">
                   Join Our Climate Insights
                 </h4>
-                <p className="mt-4 max-w-md text-base leading-7 text-secondary/90">
+                <p className="mt-4 max-w-md text-base leading-7 text-primary-foreground/90">
                   Receive updates on carbon markets, climate finance opportunities, and insights on
                   developing high-integrity carbon projects.
                 </p>
@@ -145,11 +146,11 @@ const Footer = () => {
                     name="newsletter-email"
                     type="email"
                     placeholder="Email address"
-                    className="h-12 w-full rounded-full border border-border bg-secondary px-5 text-sm text-secondary-foreground outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary"
+                    className="h-12 w-full rounded-full border border-border bg-secondary/20 px-5 text-sm text-primary-foreground outline-none placeholder:text-primary-foreground/60 focus:ring-2 focus:ring-primary"
                   />
                   <button
                     type="submit"
-                    className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
+                    className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-secondary px-6 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-secondary/90 cursor-pointer"
                   >
                     Subscribe
                   </button>
@@ -160,20 +161,27 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="relative border-t border-secondary/15">
-        <div className="mx-auto grid w-full max-w-[1500px] gap-5 px-5 py-6 text-sm text-secondary/80 sm:px-8 md:grid-cols-3 md:items-center md:px-10 lg:px-14 xl:px-20">
-          <p className="font-medium text-secondary">TerraCarbon Consults</p>
+      <div className="relative border-t border-primary-foreground/25">
+        <div className="mx-auto grid w-full max-w-[1500px] gap-5 px-5 py-6 text-sm text-primary-foreground/80 sm:px-8 md:grid-cols-3 md:items-center md:px-10 lg:px-14 xl:px-20">
+          {/* <p className="font-medium text-primary-foreground">TerraCarbon Consults</p> */}
+          <Image
+            src="/assets/logo-white.png"
+            alt="TerraCarbon Consults"
+            // className="h-10 w-auto"
+            width={200}
+            height={90}
+          />
           <div className="flex gap-5 md:justify-center">
-            <Link href="#" className="transition-colors hover:text-secondary">
+            <Link href="#" className="transition-colors hover:text-primary-foreground/90">
               Privacy Policy
             </Link>
-            <Link href="#" className="transition-colors hover:text-secondary">
+            <Link href="#" className="transition-colors hover:text-primary-foreground/90">
               Terms &amp; Conditions
             </Link>
           </div>
           <p className="md:text-right">&copy; 2026 TerraCarbon Consults. All rights reserved.</p>
         </div>
-        <p className="mx-auto max-w-[1500px] px-5 pb-8 text-xs text-secondary/65 sm:px-8 md:px-10 lg:px-14 xl:px-20">
+        <p className="mx-auto max-w-[1500px] px-5 pb-8 text-xs text-primary-foreground/65 sm:px-8 md:px-10 lg:px-14 xl:px-20">
           Advisory services for carbon markets, climate finance, and project development.
         </p>
       </div>

@@ -41,7 +41,13 @@ const Navbar = () => {
                 href={'/'}
                 className={`whitespace-nowrap text-center font-bold text-primary transition-[font-size] duration-300 ${isScrolled ? 'text-base xl:text-lg' : 'text-lg xl:text-xl'}`}
               >
-                TerraCarbonConsults
+                {/* TerraCarbonConsults */}
+                  <Image
+                    src="/assets/logo.png"
+                    alt="TerraCarbonConsults"
+                    width={200}
+                    height={90}
+                  />
               </Link>
             </div>
 
@@ -63,7 +69,7 @@ const Navbar = () => {
               <Link className="cursor-pointer" href="mailto:info@terracarbonconsults.com">
                 <button
                   type="button"
-                  className={`rounded-full bg-primary ${isScrolled ? 'py-1.5' : 'py-2'} transition-[padding,opacity] duration-300 px-3 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4`}
+                  className={`rounded-full bg-primary ${isScrolled ? 'py-1.5' : 'py-2'} transition-[padding,opacity] duration-300 px-3 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-primary/90 cursor-pointer`}
                 >
                   Email Us
                 </button>
@@ -74,7 +80,7 @@ const Navbar = () => {
                 className={`rounded-full bg-primary transition-[padding,opacity] duration-300 hover:opacity-90 ${isScrolled ? 'p-1.5' : 'p-2'}`}
               >
                 <Search
-                  className={`text-secondary transition-[width,height] duration-300 ${isScrolled ? 'size-4.5' : 'size-5'}`}
+                  className={`text-primary-foreground transition-[width,height] duration-300 cursor-pointer ${isScrolled ? 'size-4.5' : 'size-5'}`}
                 />
               </button>
             </div>
@@ -87,7 +93,12 @@ const Navbar = () => {
               href={'/'}
               className={`font-bold tracking-tight text-primary transition-[font-size] duration-300 ${isScrolled ? 'text-sm sm:text-base' : 'text-base sm:text-lg'}`}
             >
-              TerraCarbonConsults
+              <Image
+                    src="/assets/logo.png"
+                    alt="TerraCarbonConsults"
+                    width={150}
+                    height={50}
+                  />
             </Link>
 
             <div className="flex items-center gap-2">
@@ -97,7 +108,7 @@ const Navbar = () => {
                 className={`rounded-full bg-primary transition-[padding,opacity] duration-300 hover:opacity-90 ${isScrolled ? 'p-1.5' : 'p-2'}`}
               >
                 <Search
-                  className={`text-secondary transition-[width,height] duration-300 ${isScrolled ? 'size-4' : 'size-4 sm:size-5'}`}
+                  className={`text-primary-foreground transition-[width,height] duration-300 cursor-pointer ${isScrolled ? 'size-4' : 'size-4 sm:size-5'}`}
                 />
               </button>
               <button

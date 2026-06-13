@@ -23,7 +23,7 @@ const About = () => {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-foreground">About Our Institute</p>            
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">About Our Institute</p>            
             <p className="mt-6 text-base leading-8 text-primary/80 sm:text-lg">
               Founded to accelerate the transition to a sustainable future, our institute combines rigorous
               science with market-focused expertise. We develop climate solutions that are technically robust,
@@ -46,7 +46,7 @@ const About = () => {
             <div className="mt-10">
               <Link
                 href="about"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Learn More
               </Link>

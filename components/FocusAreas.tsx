@@ -28,7 +28,7 @@ const FocusCard = ({ area, index }: FocusCardProps) => {
             </div>
           )}
 
-          <div className="absolute top-4 left-4 bg-teal-500 text-white w-8 h-8 flex items-center justify-center font-mono text-xs font-bold rounded-sm shadow-md">
+          <div className="absolute top-4 left-4 bg-secondary text-white w-8 h-8 flex items-center justify-center font-mono text-xs font-bold rounded-sm shadow-md">
             0{index + 1}
           </div>
         </div>

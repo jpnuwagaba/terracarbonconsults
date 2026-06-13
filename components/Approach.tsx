@@ -34,15 +34,15 @@ const StepTile = ({ step }: StepTileProps) => {
         className="pointer-events-none absolute bottom-3 right-0 top-2 w-3 skew-y-[38deg] border border-primary/20 bg-chart-2/35"
       /> */}
 
-      <article className="relative z-10 flex h-full min-h-[190px] flex-col justify-between rounded-xs border border-primary/50 bg-background/80 p-6 backdrop-blur-[2px] transition-all duration-300 hover:border-primary/45 hover:bg-background/72">
+      <article className="relative z-10 flex h-full min-h-[190px] flex-col justify-between rounded-xs border border-border bg-background/80 p-6 backdrop-blur-[2px] transition-all duration-300 hover:border-primary/45 hover:bg-background/72">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/65">Step {step.id}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Step {step.id}</p>
           <div className="mt-3 flex items-center gap-3">
-            <IconComponent className="size-6 text-primary/70" />
+            <IconComponent className="size-6 text-ring" />
             <h3 className="text-2xl font-semibold leading-tight text-primary">{step.title}</h3>
           </div>
         </div>
-        <p className="mt-6 text-base leading-7 text-primary/80">{step.description}</p>
+        <p className="mt-6 text-base leading-7 text-muted-foreground">{step.description}</p>
       </article>
     </div>
   );
@@ -99,7 +99,7 @@ const Approach = () => {
         <div className="mt-12 flex justify-center">
           <Link
             href="#"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-chart-4"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Learn More
           </Link>

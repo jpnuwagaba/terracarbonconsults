@@ -11,6 +11,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "TerraCarbon Consults",
+  icons: {
+    icon: "/icon.png",
+  },
   description: "An environmental consultancy connecting carbon projects with global buyers through transparent, sustainable climate solutions.",
 };
 
