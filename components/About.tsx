@@ -23,9 +23,9 @@ const About = () => {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">About Our Institute</p>            
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">About TerraCarbon</p>            
             <p className="mt-6 text-base leading-8 text-primary/80 sm:text-lg">
-              Founded to accelerate the transition to a sustainable future, our institute combines rigorous
+              Founded to accelerate the transition to a sustainable future, TerraCarbon combines rigorous
               science with market-focused expertise. We develop climate solutions that are technically robust,
               commercially viable, and designed to deliver measurable emissions reduction.
             </p>
@@ -33,15 +33,6 @@ const About = () => {
               Our multidisciplinary team works across research, engineering, and policy to create practical
               pathways for clean energy, nature-based solutions, and circular systems that build long-term value.
             </p>
-
-            {/* <div className="mt-10 grid gap-6 sm:grid-cols-3">
-              {stats.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-primary/15 bg-background/80 p-6 shadow-sm shadow-chart-2/10">
-                  <p className="text-lg font-semibold tracking-tight text-primary">{item.label}</p>
-                  <p className="mt-3 text-sm leading-7 text-primary/75">{item.caption}</p>
-                </div>
-              ))}
-            </div> */}
 
             <div className="mt-10">
               <Link
