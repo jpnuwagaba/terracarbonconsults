@@ -43,7 +43,7 @@ const CommunityMandate = () => {
                 return (
                   <article key={priority.title} className="flex gap-5 items-center">
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-chart-1 text-primary">
-                      <Icon className="size-5" strokeWidth={1.8} />
+                      <Icon className="size-5 text-accent" strokeWidth={1.8} />
                     </span>
                     <div>
                       <h3 className="text-lg font-semibold leading-tight text-primary">

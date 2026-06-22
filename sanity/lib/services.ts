@@ -26,6 +26,7 @@ export type Service = {
   description: string | PortableTextBlock[]
   href: string
   icon?: string
+  serviceImage?: string
 }
 
 type SanityService = {
@@ -35,6 +36,7 @@ type SanityService = {
   description?: unknown
   slug?: string
   icon?: string
+  serviceImage?: string
 }
 
 const isPortableTextBlockArray = (value: unknown): value is PortableTextBlock[] => {
@@ -63,7 +65,8 @@ const servicesQuery = `*[_type == "servicetype" && defined(name)]|order(orderRan
   "summary": briefDescription,
   "description": detailedDescription,
   "slug": slug.current,
-  icon
+  icon,
+  serviceImage
 }`
 
 export const getServices = async (): Promise<Service[]> => {
@@ -77,6 +80,7 @@ export const getServices = async (): Promise<Service[]> => {
       description: toServiceDescription(service.description),
       href: service.slug ? `/services/${service.slug}` : '#',
       icon: service.icon,
+      serviceImage: service.serviceImage,
     }))
   } catch (err) {
     // Fail gracefully in dev if the external fetch fails (network, invalid config, etc.)

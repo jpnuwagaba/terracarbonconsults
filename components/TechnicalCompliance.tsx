@@ -42,7 +42,7 @@ const TechnicalCompliance = () => {
                 We help select and apply suitable carbon methodologies that match project type,
                 geography, and reporting requirements.
               </p>
-              <Satellite className="mt-8 size-9 text-secondary/80" strokeWidth={1.8} />
+              <Satellite className="mt-8 size-9 text-secondary" strokeWidth={1.8} />
 
             </article>
 
@@ -57,18 +57,18 @@ const TechnicalCompliance = () => {
               <ShieldCheck className="mt-8 size-9 text-primary" strokeWidth={1.8} />
             </article>
 
-            <article className="relative min-h-[150px] overflow-hidden rounded-xs bg-chart-5 p-7 text-secondary sm:col-span-2 sm:p-8">
+            <article className="relative min-h-[150px] overflow-hidden rounded-xs bg-secondary p-7 text-secondary sm:col-span-2 sm:p-8">
               <div className="max-w-2xl">
-                <h3 className="text-2xl font-semibold leading-tight text-secondary">
+                <h3 className="text-2xl font-semibold leading-tight text-secondary-foreground">
                   MRV Frameworks
                 </h3>
-                <p className="mt-4 text-base leading-7 text-secondary/90">
+                <p className="mt-4 text-base leading-7 text-secondary-foreground/90">
                   We design monitoring, reporting, and verification systems that improve data
                   quality, transparency, and long-term compliance.
                 </p>
               </div>
 
-              <FileCheck2 className="mt-8 size-9 text-secondary/80" strokeWidth={1.8} />
+              <FileCheck2 className="mt-8 size-9 text-secondary-foreground/80" strokeWidth={1.8} />
             </article>
           </div>
         </div>
