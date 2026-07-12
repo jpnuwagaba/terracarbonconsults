@@ -44,13 +44,13 @@ const page = async ({params}: SectorPageProps) => {
     return <div>Sector not found</div>;
   }
 
-  const paragraphText = getTextContent(sector.description);
+  const paragraphText = getTextContent(sector.summary);
 
   return (
     <>
         <Hero3
             heroTitle={sector.title}
-            bigTxt={sector.heroBigTxt || sector.summary}
+            bigTxt={sector.heroBigTxt }
             paragraphTxt={paragraphText}
             heroImg={sector.image || ''}
             heroThemeColor={'#0f766e'}
