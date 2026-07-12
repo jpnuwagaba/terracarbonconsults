@@ -68,7 +68,7 @@ const FocusCard = ({ area, index }: FocusCardProps) => {
                         className="pointer-events-none absolute right-6 top-0 h-2 w-14 -translate-y-1/2 -skew-x-[35deg] border border-primary/20 bg-chart-1/45"
                     />
                     <h3 className="text-2xl font-semibold leading-tight text-primary">{area.title}</h3>
-                    <p className="mt-3 text-base leading-7 text-primary/80">{getDescriptionText(area.description)}</p>
+                    <p className="mt-3 text-base leading-7 text-primary/80">{getDescriptionText(area.summary)}</p>
                 </div>
             </article>
         </Link>
