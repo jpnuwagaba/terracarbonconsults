@@ -73,7 +73,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           title: 'Brief Description',
           type: 'text',
           rows: 3,
-          validation: (Rule) => Rule.required(),
+          validation: (Rule) => Rule.required(), 
+        },
+        {
+          name: 'heroBigTxt',
+          title: 'Hero Big Text',
+          type: 'text',
+          rows: 3,
+          description: 'Large headline text shown in the hero section.',
         },
         {
           name: 'detailedDescription',

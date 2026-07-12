@@ -9,9 +9,35 @@ type FocusCardProps = {
   index: number;
 };
 
+const getDescriptionText = (description: unknown): string => {
+  if (typeof description === 'string') {
+    return description;
+  }
+
+  if (Array.isArray(description)) {
+    return description
+      .map((item) => {
+        if (typeof item === 'string') {
+          return item;
+        }
+
+        if (item && typeof item === 'object' && 'children' in item) {
+          const children = (item as { children?: Array<{ text?: string }> }).children ?? [];
+          return children.map((child) => child.text ?? '').join('');
+        }
+
+        return '';
+      })
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  return '';
+};
+
 const FocusCard = ({ area, index }: FocusCardProps) => {
   return (
-    <Link href="#" className="group relative block cursor-pointer h-full">
+    <Link href={area.href} className="group relative block cursor-pointer h-full">
       <article className="group relative flex h-full flex-col overflow-hidden rounded-xs border border-primary/20 bg-background/78 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40">
         <div className="relative h-64 overflow-hidden">
           {area.image ? (
@@ -39,7 +65,7 @@ const FocusCard = ({ area, index }: FocusCardProps) => {
             className="pointer-events-none absolute right-6 top-0 h-2 w-14 -translate-y-1/2 -skew-x-[35deg] border border-primary/20 bg-chart-1/45"
           />
           <h3 className="text-2xl font-semibold leading-tight text-primary">{area.title}</h3>
-          <p className="mt-3 text-base leading-7 text-primary/80">{area.description}</p>
+          <p className="mt-3 text-base leading-7 text-primary/80">{getDescriptionText(area.description)}</p>
         </div>
       </article>
     </Link>

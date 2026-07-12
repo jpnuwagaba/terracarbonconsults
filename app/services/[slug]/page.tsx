@@ -11,6 +11,32 @@ type ServicePageProps = {
   }>
 }
 
+const getTextContent = (value: unknown): string => {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => {
+        if (typeof item === 'string') {
+          return item;
+        }
+
+        if (item && typeof item === 'object' && 'children' in item) {
+          const children = (item as { children?: Array<{ text?: string }> }).children ?? [];
+          return children.map((child) => child.text ?? '').join('');
+        }
+
+        return '';
+      })
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  return '';
+};
+
 const page = async ({ params }: ServicePageProps) => {
   const { slug } = await params;
   const services = await getServices();
@@ -26,6 +52,8 @@ const page = async ({ params }: ServicePageProps) => {
     );
   }
 
+  const paragraphText = getTextContent(service.description);
+
   return (
     <div className="">
       <Hero2
@@ -36,7 +64,7 @@ const page = async ({ params }: ServicePageProps) => {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
 
         <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-10 prose prose-primary mt-12 prose-headings:font-semibold prose-headings:text-primary mb-12">
-          <PortableTextRenderer content={service.description} />
+          <p>{paragraphText}</p>
         </div>
       </div>
     </div>
